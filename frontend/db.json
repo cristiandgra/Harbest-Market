@@ -1,0 +1,95 @@
+{
+  "products": [
+    {
+      "productName": "Lechuga iceberg",
+      "description": "Producto de Mariano, cultivada con amor.",
+      "active": true,
+      "price": 0.79,
+      "id": 1
+    },
+    {
+      "productName": "Cebolla Roja",
+      "description": "Producto de Mariano, cultivada con amor.",
+      "active": true,
+      "price": 1.79,
+      "id": 2
+    },
+    {
+      "productName": "Zanahoria",
+      "description": "Producto de Angel, cultivada con amor.",
+      "active": true,
+      "price": 2.79,
+      "id": 3
+    },
+    {
+      "productName": "Patata Agria",
+      "description": "Producto de Mariano, cultivada con amor.",
+      "active": true,
+      "price": 0.39,
+      "id": 4
+    },
+    {
+      "productName": "Tomate Maduro",
+      "description": "Producto de Mariano, cultivada con amor.",
+      "active": true,
+      "price": 0.89,
+      "id": 5
+    },
+    {
+      "productName": "Tomate Verde",
+      "description": "Producto de Mariano, cultivada con amor.",
+      "active": true,
+      "price": 0.89,
+      "id": 6
+    },
+    {
+      "productName": "Tomate Cherry",
+      "description": "Producto de Felix, cultivada con amor.",
+      "active": true,
+      "price": 0.89,
+      "id": 7
+    },
+    {
+      "productName": "Pepino",
+      "description": "Producto de Felix, cultivada con amor.",
+      "active": true,
+      "price": 2.89,
+      "id": 8
+    },
+    {
+      "productName": "Pimiento Verde",
+      "description": "Producto de Felix, cultivada con amor.",
+      "active": false,
+      "price": 0.89,
+      "id": 9
+    },
+    {
+      "productName": "Pimiento Rojo",
+      "description": "Producto de Felix, cultivada con amor.",
+      "active": true,
+      "price": 0.89,
+      "id": 10
+    },
+    {
+      "productName": "Pimiento Amarillo",
+      "description": "Producto de Felix, cultivada con amor.",
+      "active": false,
+      "price": 0.89,
+      "id": 11
+    },
+    {
+      "productName": "Tomate Rosa",
+      "description": "Producto de Angel, cultivada con amor.",
+      "active": true,
+      "price": 1.59,
+      "id": 12
+    },
+    {
+      "productName": "Tomate Azul",
+      "description": "Producto de Angel, cultivada con amor.",
+      "active": true,
+      "price": 0.89,
+      "id": 13
+    }
+  ]
+}

@@ -14,16 +14,12 @@ const App = () => {
     dispatch(initProducts());
   }, [dispatch]);
 
-  // const activeProducts = useSelector((state) =>
-  //   state.filter((product) => product.active)
-  // );
   return (
     <div>
       <Header />
       <div className="buttons-container">
         <NewProduct />
         <select
-          defaultValue={isActivo}
           className="select-dashborad"
           onChange={(e) => {
             e.target.value === "true"

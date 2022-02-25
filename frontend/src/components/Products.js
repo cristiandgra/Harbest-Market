@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal, Button, Form } from "react-bootstrap";
 import cardImg from "../assets/img/cardsImg.png";
+import { updateProduct } from "../reducers/productReducer";
+import { deleteProduct } from "../reducers/productReducer";
 
 export const Products = ({ isActivo }) => {
   const products = useSelector((state) => state.products);
@@ -10,6 +12,26 @@ export const Products = ({ isActivo }) => {
   const [show, setShow] = useState(false);
   const handleCloseProduct = () => setShow(false);
   const handleShowProduct = () => setShow(true);
+  const [productId, setProductId] = useState("");
+
+  const updateTheProduct = async (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const content = {
+      image: target.image.value,
+      name: target.name.value,
+      description: target.description.value,
+      price: target.price.value,
+    };
+    target.name.value = "";
+    console.log(productId);
+    dispatch(updateProduct(productId, content));
+  };
+
+  const deleteTheProduct = async (e) => {
+    e.preventDefault();
+    dispatch(deleteProduct(productId));
+  };
 
   return (
     <div className="product-container">
@@ -18,7 +40,7 @@ export const Products = ({ isActivo }) => {
           <Modal.Header closeButton>
             <Modal.Title>Editar/Eliminar Producto</Modal.Title>
           </Modal.Header>
-          <Form>
+          <Form onSubmit={handleCloseProduct}>
             <Modal.Body>
               <Form.Group className="mb-3">
                 <Form.Label>Imagen</Form.Label>
@@ -31,7 +53,7 @@ export const Products = ({ isActivo }) => {
               <Form.Group className="mb-3">
                 <Form.Label>Nombre del producto</Form.Label>
                 <Form.Control
-                  name="productName"
+                  name="name"
                   type="text"
                   placeholder="Example:Lechuga batavia"
                 />
@@ -58,15 +80,11 @@ export const Products = ({ isActivo }) => {
               <Button
                 variant="primary"
                 type="submit"
-                onClick={handleCloseProduct}
+                onClick={updateTheProduct}
               >
                 Guardar cambios
               </Button>
-              <Button
-                variant="danger"
-                type="submit"
-                onClick={handleCloseProduct}
-              >
+              <Button variant="danger" type="submit" onClick={deleteTheProduct}>
                 Eliminar producto
               </Button>
             </Modal.Footer>
@@ -75,9 +93,12 @@ export const Products = ({ isActivo }) => {
         {products.map((product) => {
           return (
             <li
-              key={product.id}
+              key={product._id}
               className="products"
-              onClick={handleShowProduct}
+              onClick={() => {
+                handleShowProduct();
+                setProductId(product._id);
+              }}
             >
               <div className="product-card">
                 <div>
@@ -89,7 +110,7 @@ export const Products = ({ isActivo }) => {
                   />
                 </div>
                 <div className="product-info">
-                  <h3 className="product-name">{product.productName}</h3>
+                  <h3 className="product-name">{product.name}</h3>
                   <h5 className="product-subtitle">{product.description}</h5>
                   <strong className="product-price">{product.price} € </strong>
                 </div>

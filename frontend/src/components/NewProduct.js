@@ -19,7 +19,6 @@ export const NewProduct = () => {
       description: target.description.value,
       price: target.price.value,
     };
-    console.log(content);
     target.productName.value = "";
     dispatch(createProduct(content));
   };

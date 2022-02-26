@@ -12,8 +12,8 @@ const App = () => {
   const dispatch = useDispatch();
   const [isActivo, setIsActivo] = useState("true");
   useEffect(() => {
-    dispatch(initProducts());
-  }, [dispatch]);
+    dispatch(initProducts(isActivo));
+  }, [dispatch, isActivo]);
 
   return (
     <div className="dashboard">

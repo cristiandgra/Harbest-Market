@@ -40,9 +40,9 @@ export const createProduct = (content) => {
   };
 };
 
-export const initProducts = () => {
+export const initProducts = (isActivo) => {
   return async (dispatch) => {
-    const products = await getAll(0, 8, true);
+    const products = await getAll(0, 8, isActivo);
     dispatch({
       type: "@products/init",
       payload: products,

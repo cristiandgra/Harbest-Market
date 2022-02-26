@@ -17,14 +17,13 @@ export const NewProduct = () => {
   const addProduct = async (e) => {
     e.preventDefault();
     const { target } = e;
-    console.log(target);
     const content = {
-      image: target.image.value,
-      productName: target.productName.value,
+      SKU: target.sku.value,
+      name: target.name.value,
       description: target.description.value,
       price: target.price.value,
     };
-    target.productName.value = "";
+
     Swal.fire({
       icon: "success",
       title: "Su producto ha sido creado",
@@ -37,6 +36,7 @@ export const NewProduct = () => {
         popup: "animate__animated animate__fadeOutUp",
       },
     });
+
     dispatch(createProduct(content));
     setTimeout(reload, 2000);
   };
@@ -57,17 +57,14 @@ export const NewProduct = () => {
         <Form onSubmit={addProduct}>
           <Modal.Body>
             <Form.Group className="mb-3">
-              <Form.Label>Imagen</Form.Label>
-              <Form.Control name="image" type="file" accept=".jpg,.png" />
-              <Form.Text className="text-muted">
-                Solo formato PNG y JPG*
-              </Form.Text>
+              <Form.Label>SKU</Form.Label>
+              <Form.Control name="sku" type="text" />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Nombre del producto</Form.Label>
               <Form.Control
-                name="productName"
+                name="name"
                 type="text"
                 placeholder="Example:Lechuga batavia"
               />
@@ -84,7 +81,7 @@ export const NewProduct = () => {
 
             <Form.Group className="mb-3">
               <Form.Label>Precio del producto</Form.Label>
-              <Form.Control name="price" type="number" placeholder="1.79€" />
+              <Form.Control name="price" type="text" placeholder="1.79€" />
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>

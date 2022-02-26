@@ -22,12 +22,10 @@ export const Products = () => {
   const updateTheProduct = async (e) => {
     e.preventDefault();
     const content = {
-      image: document.getElementsByName("image")[0].value,
       name: document.getElementsByName("name")[0].value,
       description: document.getElementsByName("description")[1].value,
       price: document.getElementsByName("price")[0].value,
     };
-    document.getElementsByName("name")[0].value = "";
     Swal.fire({
       icon: "success",
       title: "Su producto ha sido modificado",
@@ -83,14 +81,6 @@ export const Products = () => {
           </Modal.Header>
           <Form onSubmit={handleCloseProduct}>
             <Modal.Body>
-              <Form.Group className="mb-3">
-                <Form.Label>Imagen</Form.Label>
-                <Form.Control name="image" type="file" accept=".jpg,.png" />
-                <Form.Text className="text-muted">
-                  Solo formato PNG y JPG*
-                </Form.Text>
-              </Form.Group>
-
               <Form.Group className="mb-3">
                 <Form.Label>Nombre del producto</Form.Label>
                 <Form.Control

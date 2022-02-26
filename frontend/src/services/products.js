@@ -9,9 +9,8 @@ export const getAll = async (page, itemsPerPage, active) => {
   return res.data.list;
 };
 
-export const createNewProduct = async ({ image, name, description, price }) => {
-  const product = { image, name, description, price, active: true };
-  console.log(product);
+export const createNewProduct = async ({ name, description, price, SKU }) => {
+  const product = { name, description, price, SKU, active: true };
   const response = await axios.post(baseUrl, product);
   return response.data.list;
 };
@@ -22,7 +21,6 @@ export const updateSelectedProduct = async (id, content) => {
 };
 
 export const deleteSelectedProduct = async (id) => {
-  console.log(id);
   const response = await axios.delete(`${baseUrl}/${id}`);
   return response.data.list;
 };

@@ -4,9 +4,14 @@ import { Modal, Button, Form } from "react-bootstrap";
 import cardImg from "../assets/img/cardsImg.png";
 import { updateProduct } from "../reducers/productReducer";
 import { deleteProduct } from "../reducers/productReducer";
+import Swal from "sweetalert2";
 
-export const Products = ({ isActivo }) => {
+export const Products = () => {
   const products = useSelector((state) => state.products);
+
+  const reload = () => {
+    window.location.reload();
+  };
 
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -30,7 +35,21 @@ export const Products = ({ isActivo }) => {
 
   const deleteTheProduct = async (e) => {
     e.preventDefault();
-    dispatch(deleteProduct(productId));
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás volver atrás",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Borrado!", "Ha sido eliminado.", "success");
+        dispatch(deleteProduct(productId));
+        setTimeout(reload, 2000);
+      }
+    });
   };
 
   return (

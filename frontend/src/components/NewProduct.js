@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { createProduct } from "../reducers/productReducer";
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 export const NewProduct = () => {
   const dispatch = useDispatch();
@@ -20,12 +21,28 @@ export const NewProduct = () => {
       price: target.price.value,
     };
     target.productName.value = "";
+    Swal.fire({
+      icon: "success",
+      title: "Su producto ha sido creado",
+      showConfirmButton: false,
+      timer: 1500,
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+    });
     dispatch(createProduct(content));
   };
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShowNewProduct}>
+      <Button
+        variant="primary"
+        className="addProductBtn"
+        onClick={handleShowNewProduct}
+      >
         Agregar producto
       </Button>
       <Modal show={showNewProduct} onHide={handleCloseNewProduct}>

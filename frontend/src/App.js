@@ -15,7 +15,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="dashboard">
       <Header />
       <div className="buttons-container">
         <NewProduct />

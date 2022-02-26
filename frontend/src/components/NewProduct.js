@@ -11,9 +11,13 @@ export const NewProduct = () => {
 
   const handleCloseNewProduct = () => setShowNewProduct(false);
   const handleShowNewProduct = () => setShowNewProduct(true);
+  const reload = () => {
+    window.location.reload();
+  };
   const addProduct = async (e) => {
     e.preventDefault();
     const { target } = e;
+    console.log(target);
     const content = {
       image: target.image.value,
       productName: target.productName.value,
@@ -34,13 +38,14 @@ export const NewProduct = () => {
       },
     });
     dispatch(createProduct(content));
+    setTimeout(reload, 2000);
   };
 
   return (
     <div>
       <Button
         variant="primary"
-        className="addProductBtn"
+        className="addProductBtn animate__animated animate__fadeInLeft"
         onClick={handleShowNewProduct}
       >
         Agregar producto

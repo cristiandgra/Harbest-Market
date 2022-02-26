@@ -4,6 +4,7 @@ import { NewProduct } from "./components/NewProduct";
 import { Products } from "./components/Products";
 import { initProducts } from "./reducers/productReducer";
 import { Header } from "./components/Header";
+import "animate.css";
 import "./assets/css/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,7 +21,7 @@ const App = () => {
       <div className="buttons-container">
         <NewProduct />
         <select
-          className="select-dashborad"
+          className="animate__animated animate__fadeInLeft select-dashborad"
           onChange={(e) => {
             e.target.value === "true"
               ? setIsActivo("true")

@@ -21,16 +21,27 @@ export const Products = () => {
 
   const updateTheProduct = async (e) => {
     e.preventDefault();
-    const { target } = e;
     const content = {
-      image: target.image.value,
-      name: target.name.value,
-      description: target.description.value,
-      price: target.price.value,
+      image: document.getElementsByName("image")[0].value,
+      name: document.getElementsByName("name")[0].value,
+      description: document.getElementsByName("description")[1].value,
+      price: document.getElementsByName("price")[0].value,
     };
-    target.name.value = "";
-    console.log(productId);
+    document.getElementsByName("name")[0].value = "";
+    Swal.fire({
+      icon: "success",
+      title: "Su producto ha sido modificado",
+      showConfirmButton: false,
+      timer: 1500,
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+    });
     dispatch(updateProduct(productId, content));
+    setTimeout(reload, 2000);
   };
 
   const deleteTheProduct = async (e) => {
@@ -45,7 +56,18 @@ export const Products = () => {
       confirmButtonText: "Eliminar",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Borrado!", "Ha sido eliminado.", "success");
+        Swal.fire({
+          icon: "success",
+          title: "Su producto ha sido borrado",
+          showConfirmButton: false,
+          timer: 1500,
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
         dispatch(deleteProduct(productId));
         setTimeout(reload, 2000);
       }
@@ -54,7 +76,7 @@ export const Products = () => {
 
   return (
     <div className="product-container">
-      <ul className="product-list">
+      <ul className="animate__animated animate__fadeInLeft product-list">
         <Modal show={show} onHide={handleCloseProduct}>
           <Modal.Header closeButton>
             <Modal.Title>Editar/Eliminar Producto</Modal.Title>

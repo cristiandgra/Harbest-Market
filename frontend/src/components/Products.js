@@ -2,16 +2,12 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal, Button, Form } from "react-bootstrap";
 import cardImg from "../assets/img/cardsImg.png";
-import { updateProduct } from "../reducers/productReducer";
-import { deleteProduct } from "../reducers/productReducer";
+import { updateProduct } from "../actions/actions.js";
+import { deleteProduct } from "../actions/actions.js";
 import Swal from "sweetalert2";
 
 export const Products = () => {
   const products = useSelector((state) => state.products);
-
-  const reload = () => {
-    window.location.reload();
-  };
 
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -30,7 +26,7 @@ export const Products = () => {
       icon: "success",
       title: "Su producto ha sido modificado",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 2000,
       showClass: {
         popup: "animate__animated animate__fadeInDown",
       },
@@ -39,7 +35,7 @@ export const Products = () => {
       },
     });
     dispatch(updateProduct(productId, content));
-    setTimeout(reload, 2000);
+    handleCloseProduct();
   };
 
   const deleteTheProduct = async (e) => {
@@ -56,9 +52,9 @@ export const Products = () => {
       if (result.isConfirmed) {
         Swal.fire({
           icon: "success",
-          title: "Su producto ha sido borrado",
+          title: "Su producto ha sido eliminado",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 2000,
           showClass: {
             popup: "animate__animated animate__fadeInDown",
           },
@@ -67,7 +63,7 @@ export const Products = () => {
           },
         });
         dispatch(deleteProduct(productId));
-        setTimeout(reload, 2000);
+        handleCloseProduct();
       }
     });
   };
@@ -121,6 +117,7 @@ export const Products = () => {
             </Modal.Footer>
           </Form>
         </Modal>
+
         {products.map((product) => {
           return (
             <li

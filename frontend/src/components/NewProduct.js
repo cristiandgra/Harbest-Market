@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { createProduct } from "../reducers/productReducer";
+import { createProduct } from "../actions/actions.js";
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
@@ -11,9 +11,7 @@ export const NewProduct = () => {
 
   const handleCloseNewProduct = () => setShowNewProduct(false);
   const handleShowNewProduct = () => setShowNewProduct(true);
-  const reload = () => {
-    window.location.reload();
-  };
+
   const addProduct = async (e) => {
     e.preventDefault();
     const { target } = e;
@@ -36,9 +34,7 @@ export const NewProduct = () => {
         popup: "animate__animated animate__fadeOutUp",
       },
     });
-
     dispatch(createProduct(content));
-    setTimeout(reload, 2000);
   };
 
   return (

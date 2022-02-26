@@ -9,18 +9,25 @@ export const getAll = async (page, itemsPerPage, active) => {
   return res.data.list;
 };
 
+export const getTotal = async (page, itemsPerPage) => {
+  const res = await axios.get(
+    `${baseUrl}?page=${page}&itemsPerPage=${itemsPerPage}`
+  );
+  return res.data.totalCount;
+};
+
 export const createNewProduct = async ({ name, description, price, SKU }) => {
   const product = { name, description, price, SKU, active: true };
   const response = await axios.post(baseUrl, product);
-  return response.data.list;
+  return response.data;
 };
 
 export const updateSelectedProduct = async (id, content) => {
   const response = await axios.put(`${baseUrl}/${id}`, content);
-  return response.data.list;
+  return response.data;
 };
 
 export const deleteSelectedProduct = async (id) => {
   const response = await axios.delete(`${baseUrl}/${id}`);
-  return response.data.list;
+  return response.data;
 };

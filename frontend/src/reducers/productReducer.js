@@ -1,71 +1,33 @@
-import { getAll } from "../services/products";
-import { createNewProduct } from "../services/products";
-import { updateSelectedProduct } from "../services/products";
-import { deleteSelectedProduct } from "../services/products";
+const initalState = { products: [] };
+export const productReducer = (state = initalState, action) => {
+  switch (action.type) {
+    case "@products/getProducts":
+      return { ...state, products: action.payload };
+    case "@products/getTotal":
+      return { ...state, totalProducts: action.payload };
+    case "@products/created":
+      let newProducts = [...state.products];
+      newProducts.push(action.payload);
+      return { ...state, products: newProducts };
+    case "@products/updated":
+      let updatedProducts = [...state.products];
+      updatedProducts = updatedProducts.map((product) => {
+        if (product._id === action.payload._id) {
+          return action.payload;
+        }
+        return product;
+      });
+      return { ...state, products: updatedProducts };
 
-export const productReducer = (state = [], action) => {
-  if (action.type === "@products/init") {
-    return action.payload;
+    case "@products/deleted":
+      return {
+        ...state,
+        products: state.products.filter(
+          (product) => product._id !== action.payload._id
+        ),
+      };
+
+    default:
+      return state;
   }
-
-  if (action.type === "@products/created") {
-    return [...state, action.payload];
-  }
-
-  if (action.type === "@products/updated") {
-    return state.map((product) => {
-      if (product.id === action.payload.id) {
-        return action.payload;
-      }
-      return product;
-    });
-  }
-
-  if (action.type === "@products/deleted") {
-    return state.filter((product) => product.id === action.payload.id);
-  }
-
-  return state;
-};
-
-//ACTIONS CREATORS
-
-export const createProduct = (content) => {
-  return async (dispatch) => {
-    const newProduct = await createNewProduct(content);
-    dispatch({
-      type: "@products/created",
-      payload: newProduct,
-    });
-  };
-};
-
-export const initProducts = (isActivo) => {
-  return async (dispatch) => {
-    const products = await getAll(0, 8, isActivo);
-    dispatch({
-      type: "@products/init",
-      payload: products,
-    });
-  };
-};
-
-export const updateProduct = (id, content) => {
-  return async (dispatch) => {
-    const updatedProduct = await updateSelectedProduct(id, content);
-    dispatch({
-      type: "@products/updated",
-      payload: updatedProduct,
-    });
-  };
-};
-
-export const deleteProduct = (id) => {
-  return async (dispatch) => {
-    const deletedProduct = await deleteSelectedProduct(id);
-    dispatch({
-      type: "@products/deleted",
-      payload: deletedProduct,
-    });
-  };
 };

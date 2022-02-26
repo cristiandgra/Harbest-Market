@@ -17,6 +17,7 @@ input[type="number"] {
 
 .dashboard {
   background: linear-gradient(to bottom, #8dc26f, #1c4c23);
+  min-height: 100vh;
 }
 
 .buttons-container {
@@ -99,4 +100,14 @@ input[type="number"] {
   margin: 0;
   margin-top: 0.7rem;
   font-size: 1.5rem;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.page-link {
+  color: #1c4c23 !important;
 }
